@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>万国觉醒水晶科技升级路径</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#edf3f4;--paper:#f8fbfa;--panel:#ffffff;--panel-2:#e7f0ef;
+      --ink:#12262a;--muted:#52696d;--line:#c8d7d7;
+      --teal:#087a78;--teal-deep:#075d5d;--cyan:#11a8aa;--gold:#b47920;--gold-soft:#f2dfb8;
+      --danger:#9b463e;--shadow:0 18px 50px rgba(18,38,42,.12);
+      --radius:18px;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{--bg:#081719;--paper:#0d2023;--panel:#112a2d;--panel-2:#17363a;--ink:#eef8f7;--muted:#a7bdbc;--line:#315054;--teal:#58d6d2;--teal-deep:#8ae7e4;--cyan:#55dfe0;--gold:#f1be67;--gold-soft:#4b3b20;--danger:#f19a8f;--shadow:0 22px 56px rgba(0,0,0,.28)}
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC",sans-serif;line-height:1.62}
+    button,input{font:inherit}
+    a{color:var(--teal-deep);text-underline-offset:3px}
+    .page{max-width:1180px;margin:auto;padding:clamp(16px,3vw,38px)}
+    .hero{position:relative;overflow:hidden;min-height:500px;padding:clamp(30px,6vw,74px);background:linear-gradient(125deg,#082f32 0%,#0c4b4e 62%,#0c3438 100%);color:#f2ffff;box-shadow:var(--shadow)}
+    .hero:before,.hero:after{content:"";position:absolute;pointer-events:none}
+    .hero:before{width:400px;height:560px;right:-90px;top:-115px;background:linear-gradient(140deg,rgba(150,255,251,.28),rgba(24,180,177,.04));clip-path:polygon(50% 0,100% 23%,83% 100%,18% 82%,0 25%)}
+    .hero:after{width:175px;height:235px;right:250px;bottom:-105px;background:rgba(236,188,96,.25);clip-path:polygon(50% 0,100% 33%,72% 100%,0 75%,8% 22%)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:40px;align-items:end}
+    .stamp{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid rgba(213,255,253,.3);background:rgba(2,26,28,.32);font-size:13px;font-weight:700;letter-spacing:.03em}
+    .stamp i{display:block;width:8px;height:8px;background:#64e5df;transform:rotate(45deg);box-shadow:0 0 13px #64e5df}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:"ZCOOL XiaoWei",serif;font-size:clamp(40px,7vw,78px);line-height:1.06;letter-spacing:.015em;margin:22px 0 18px;max-width:780px;font-weight:400}
+    .lead{font-size:clamp(17px,2vw,21px);line-height:1.65;max-width:720px;color:#d4edec;margin-bottom:30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{appearance:none;border:0;padding:11px 16px;background:#d8fcf8;color:#073d3f;text-decoration:none;font-weight:800;cursor:pointer;transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.secondary{background:transparent;color:#e7ffff;border:1px solid rgba(231,255,255,.42)}
+    .hero-facts{display:grid;gap:1px;background:rgba(174,224,221,.2);border:1px solid rgba(214,246,243,.24)}
+    .hero-fact{background:rgba(2,28,30,.58);padding:18px}
+    .hero-fact b{font-size:25px;line-height:1.2;display:block;color:#fff3d3}
+    .hero-fact span{font-size:13px;color:#bad6d5}
+    .note-bar{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;padding:18px 20px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 42%,transparent);margin:22px 0 0}
+    .note-bar strong{color:var(--gold);white-space:nowrap}
+    section{margin-top:clamp(54px,8vw,92px)}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);gap:30px;align-items:end;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    h2{font-family:"ZCOOL XiaoWei",serif;font-weight:400;font-size:clamp(31px,5vw,50px);line-height:1.12;margin-bottom:8px}
+    .section-head p{margin:0;color:var(--muted)}
+    .eyebrow{font-size:12px;color:var(--teal-deep);font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}
+    .control-panel{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:20px 22px;border-bottom:1px solid var(--line)}
+    .control-label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:9px}
+    .segmented{display:flex;flex-wrap:wrap;gap:6px}
+    .chip{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 12px;cursor:pointer;font-weight:700}
+    .chip[aria-pressed="true"]{background:var(--teal-deep);border-color:var(--teal-deep);color:var(--paper)}
+    .route-summary{padding:20px 22px;background:var(--panel-2);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+    .route-summary h3{font-size:20px;margin:0 0 4px}
+    .route-summary p{margin:0;color:var(--muted)}
+    .route-cost{font-weight:800;color:var(--teal-deep);white-space:nowrap}
+    .route{counter-reset:step;display:grid;padding:8px 22px 24px}
+    .step{counter-increment:step;display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line)}
+    .step:last-child{border-bottom:0}
+    .step:before{content:counter(step,decimal-leading-zero);display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--teal);color:var(--teal-deep);font-weight:800;background:var(--panel)}
+    .step h3{font-size:18px;margin:0 0 6px}
+    .step p{margin:0;color:var(--muted)}
+    .step .why{font-size:12px;font-weight:800;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);padding:6px 9px;white-space:nowrap}
+    .calculator{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .calc-controls{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}
+    .field label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:7px}
+    .field select,.field input{width:100%;min-height:44px;padding:9px 11px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:0}
+    .calc-presets{display:flex;flex-wrap:wrap;gap:7px;padding:12px 22px;border-bottom:1px solid var(--line);align-items:center}
+    .discount-row{display:grid;grid-template-columns:1fr repeat(3,minmax(110px,.45fr));gap:14px;align-items:end;padding:14px 22px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+    .discount-row>p{font-size:13px;color:var(--muted);margin:0;padding-bottom:9px}
+    .calc-presets span{font-size:12px;font-weight:800;color:var(--muted);margin-right:4px}
+    .mini-btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--teal-deep);padding:7px 10px;font-weight:700;cursor:pointer}
+    .calc-result{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:1px;background:var(--line)}
+    .result-main,.result-side{background:var(--panel);padding:24px}
+    .result-main h3{font-size:18px;margin-bottom:5px}.result-main>p{color:var(--muted);margin-bottom:18px}
+    .result-number{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1;color:var(--teal-deep);letter-spacing:-.035em}
+    .result-number small{font-size:16px;letter-spacing:0;color:var(--muted);margin-left:6px}
+    .result-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:20px;border:1px solid var(--line)}
+    .result-split div{background:var(--paper);padding:13px}.result-split b{display:block;font-size:19px}.result-split span{font-size:12px;color:var(--muted)}
+    .breakdown{list-style:none;padding:0;margin:0;display:grid;gap:9px}.breakdown li{display:grid;grid-template-columns:1fr auto;gap:12px;padding-bottom:9px;border-bottom:1px solid var(--line);font-size:13px}.breakdown li:last-child{border:0}.breakdown b{white-space:nowrap}
+    .progress-box{border-top:1px solid var(--line);padding:0 22px 20px}.progress-box summary{cursor:pointer;padding:16px 0;font-weight:800;color:var(--teal-deep)}
+    .progress-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.progress-grid .field input{min-height:40px}
+    .calc-warning{padding:13px 22px;background:var(--gold-soft);color:var(--ink);font-size:13px;border-top:1px solid color-mix(in srgb,var(--gold) 35%,transparent)}
+    .formula{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--panel);margin-top:18px}
+    .formula > div{padding:20px;border-right:1px solid var(--line)}
+    .formula > div:last-child{border:0;background:var(--teal-deep);color:var(--paper)}
+    .formula b{display:block;font-size:27px;line-height:1.1}.formula span{font-size:12px;color:var(--muted)}.formula > div:last-child span{color:color-mix(in srgb,var(--paper) 72%,transparent)}
+    .caveat{font-size:13px;color:var(--muted);margin-top:10px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .plan{background:var(--panel);border-top:4px solid var(--teal);padding:24px;box-shadow:0 8px 26px rgba(15,47,50,.07)}
+    .plan:nth-child(2){border-color:var(--gold)}.plan:nth-child(3){border-color:var(--cyan)}
+    .plan h3{font-size:21px;margin-bottom:12px}.plan p,.plan li{color:var(--muted)}
+    .plan ul{padding-left:20px;margin:0}.plan li+li{margin-top:8px}
+    .metric-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+    .metric{background:var(--panel);padding:22px}.metric b{display:block;font-size:clamp(24px,3vw,36px);line-height:1.15;color:var(--teal-deep)}.metric span{font-size:13px;color:var(--muted)}
+    .tree-tools{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+    .search{min-width:min(100%,300px);padding:10px 12px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+    .tree-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .node{background:var(--panel);border:1px solid var(--line);padding:18px;min-width:0}
+    .node-top{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .node h3{font-size:16px;line-height:1.35;margin:0}.node .en{display:block;color:var(--muted);font-size:12px;font-weight:500;margin-top:3px;overflow-wrap:anywhere}.lvl{font-size:12px;font-weight:800;color:var(--teal-deep);background:var(--panel-2);padding:4px 7px;white-space:nowrap}
+    .node dl{display:grid;grid-template-columns:48px 1fr;gap:6px 10px;margin:0;font-size:12px}.node dt{color:var(--muted)}.node dd{margin:0}.node .uncertain{color:var(--danger);font-weight:700}
+    .branch{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+    .details{margin-top:16px}.details summary{cursor:pointer;font-weight:800;color:var(--teal-deep);padding:10px 0}.details p{font-size:13px;color:var(--muted)}
+    .source-list{display:grid;gap:10px;padding:0;list-style:none}.source-list li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .source-list b{color:var(--gold)}.source-list p{margin:2px 0 0;color:var(--muted);font-size:13px}
+    .fine{font-size:12px;color:var(--muted);margin-top:22px}
+    .hidden{display:none!important}
+    @media(max-width:820px){
+      .hero{min-height:auto}.hero-grid,.section-head{grid-template-columns:1fr}.hero-facts{grid-template-columns:repeat(3,1fr)}
+      .hero-fact{padding:13px}.hero-fact b{font-size:19px}.controls{grid-template-columns:1fr}.grid-3,.tree-grid{grid-template-columns:1fr 1fr}.calc-controls{grid-template-columns:1fr 1fr}.discount-row{grid-template-columns:1fr 1fr}.discount-row>p{grid-column:1/-1}.calc-result{grid-template-columns:1fr}.progress-grid{grid-template-columns:1fr 1fr}.formula{grid-template-columns:1fr 1fr}.formula>div:nth-child(2){border-right:0}.formula>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    }
+    @media(max-width:560px){
+      .page{padding:0 0 28px}.hero,section{margin-left:0;margin-right:0}.hero{padding:30px 20px 36px}.hero-grid{gap:26px}.hero-facts{grid-template-columns:1fr}.note-bar{margin:16px 14px 0;grid-template-columns:1fr}section{padding:0 14px}.section-head{gap:10px}.control-panel,.calculator{margin-inline:-14px;border-left:0;border-right:0}.controls,.route-summary,.route{padding-left:16px;padding-right:16px}.calc-controls,.discount-row{grid-template-columns:1fr;padding:16px}.discount-row>p{grid-column:auto;padding-bottom:0}.calc-presets,.progress-box{padding-left:16px;padding-right:16px}.result-main,.result-side{padding:18px 16px}.progress-grid,.result-split{grid-template-columns:1fr}.route-summary{grid-template-columns:1fr}.route-cost{white-space:normal}.step{grid-template-columns:44px 1fr;gap:12px}.step:before{width:40px;height:40px}.step .why{grid-column:2;justify-self:start}.grid-3,.tree-grid,.metric-strip{grid-template-columns:1fr}.formula{grid-template-columns:1fr}.formula>div{border-right:0;border-bottom:1px solid var(--line)!important}.formula>div:last-child{border-bottom:0!important}.hero-actions .btn{width:100%;text-align:center}.node{padding:16px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="stamp"><i></i> 当前水晶科技 v5 · 资料核对至 2026-10-13</div>
+        <h1>先把每一颗水晶，花在会变便宜的地方</h1>
+        <p class="lead">征服赛季的通用路线不是“先堆战力”，而是先拉矿与研究中心、抢降费，主兵种先打通治疗链，再补四兵种疾行门槛冲高阶。下面可以按你的主兵种和玩法直接切换。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#calculator">算升级与前置成本</a>
+          <a class="btn secondary" href="#route">生成我的路线</a>
+        </div>
+      </div>
+      <div class="hero-facts" aria-label="版本摘要">
+        <div class="hero-fact"><b>51</b><span>当前 v5 科技节点</span></div>
+        <div class="hero-fact"><b>征服赛季</b><span>KvK 4 起进入水晶体系</span></div>
+        <div class="hero-fact"><b>97M*</b><span>社区估算满折扣全满水晶</span></div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="note-bar">
+    <strong>先说清版本</strong>
+    <div>当前资料按 v5 树整理，适用于包括首次进入 KvK 4 在内的征服赛季。中文节点名在可访问来源中无法核实，本文中文为说明性译名，英文名才是对照锚点；请以游戏内中文文本为准。<a href="#sources">来源 [1][2][3]</a></div>
+  </aside>
+
+  <section id="calculator">
+    <div class="section-head">
+      <div><div class="eyebrow">Prerequisite calculator</div><h2>升级 + 前置水晶计算器</h2></div>
+      <p>不是只看单级价格：它会递归补齐尚未完成的前置链，并把目标科技与前置科技分开计价。</p>
+    </div>
+    <div class="calculator">
+      <div class="calc-controls">
+        <div class="field"><label for="calcTech">目标科技</label><select id="calcTech"></select></div>
+        <div class="field"><label for="calcTroop">前置兵种路线</label><select id="calcTroop"><option value="inf">步兵</option><option value="arch">弓兵</option><option value="cav">骑兵</option><option value="siege">攻城</option></select></div>
+        <div class="field"><label for="calcFrom">当前等级</label><select id="calcFrom"></select></div>
+        <div class="field"><label for="calcTo">升到等级</label><select id="calcTo"></select></div>
+      </div>
+      <div class="calc-presets"><span>快速示例</span><button class="mini-btn" type="button" data-preset="culture56">文化交流 5 → 6</button><button class="mini-btn" type="button" data-preset="culture08">文化交流 0 → 8</button><button class="mini-btn" type="button" data-preset="sc20">特制药剂 II 0 → 10</button></div>
+      <div class="discount-row"><p>填入你当前的降费进度；计算会按研究顺序，把途中升到的精打细算继续用于后续等级。</p><div class="field"><label for="discountCenter">研究中心等级</label><input id="discountCenter" type="number" min="0" max="25" value="0"></div><div class="field"><label for="discountCc1">精打细算 I 等级</label><input id="discountCc1" type="number" min="0" max="5" value="0"></div><div class="field"><label for="discountCc2">精打细算 II 等级</label><input id="discountCc2" type="number" min="0" max="10" value="0"></div></div>
+      <div class="calc-result" aria-live="polite">
+        <div class="result-main">
+          <h3 id="calcTitle">文化交流 5 → 6</h3>
+          <p id="calcSummary">计算升级本身与新增前置条件。</p>
+          <div class="result-number" id="calcTotal">120,000<small>预计水晶</small></div>
+          <div class="result-split"><div><b id="calcDirect">120,000</b><span>目标科技本身</span></div><div><b id="calcPrereq">0</b><span>新增前置科技</span></div></div>
+        </div>
+        <div class="result-side"><h3>逐项明细</h3><ul class="breakdown" id="calcBreakdown"></ul></div>
+      </div>
+      <details class="progress-box" id="progressDetails"><summary>调整我已有的前置科技等级</summary><div class="progress-grid" id="progressGrid"></div></details>
+      <div class="calc-warning" id="calcWarning">基础费用未计研究中心与精打细算折扣；实际扣费以游戏内当前显示为准。</div>
+    </div>
+    <p class="fine">费用与等级门槛来自玩家模拟器 data.js；节点英文名与最大等级由 Codex Helper v5 交叉核对。水晶研究中心费用有 1.8M、4.2M、7.65M 三种互相冲突的口径，计算器遇到中心等级门槛时会列出但不擅自计价。中文均为说明性译名。<a href="#sources">[2][3]</a></p>
+  </section>
+
+  <section id="route">
+    <div class="section-head">
+      <div><div class="eyebrow">Interactive route</div><h2>你的升级主线</h2></div>
+      <p>选择主兵种与目标。路线会调整中段优先级；最前面的“基建 → 降费”不变。</p>
+    </div>
+    <div class="control-panel">
+      <div class="controls">
+        <div><span class="control-label">主兵种</span><div class="segmented" id="troopTabs">
+          <button class="chip" data-troop="inf" aria-pressed="true">步兵</button>
+          <button class="chip" data-troop="arch" aria-pressed="false">弓兵</button>
+          <button class="chip" data-troop="cav" aria-pressed="false">骑兵</button>
+          <button class="chip" data-troop="siege" aria-pressed="false">攻城</button>
+        </div></div>
+        <div><span class="control-label">本赛季目标</span><div class="segmented" id="modeTabs">
+          <button class="chip" data-mode="fight" aria-pressed="true">会战优先</button>
+          <button class="chip" data-mode="farm" aria-pressed="false">赛季币优先</button>
+          <button class="chip" data-mode="spend" aria-pressed="false">高投入速成</button>
+        </div></div>
+      </div>
+      <div class="route-summary"><div><h3 id="routeTitle">步兵 · 会战优先路线</h3><p id="routeDesc">四关前保留战斗窗口，打完再补经济，最后冲治疗减免。</p></div><div class="route-cost">核心目标：Special Concoctions II 10</div></div>
+      <div class="route" id="routeSteps" aria-live="polite"></div>
+    </div>
+
+    <div class="formula" aria-label="降费构成">
+      <div><b>−5%</b><span>研究中心 25 级</span></div>
+      <div><b>−5%</b><span>Cutting Corners I 满</span></div>
+      <div><b>−10%</b><span>Cutting Corners II 满</span></div>
+      <div><b>先降费</b><span>再点昂贵战斗科技</span></div>
+    </div>
+    <p class="caveat">口径提醒：路线来源将满配降费概括为“约 −25%”，但已列出的三个明细直接相加为 −20%；可能存在叠加方式或版本口径差异。因此这里保留各节点已核实数值，不把“−25%”当作精确计算值。费用会按你研究当下的中心与降费科技等级实时变化。<a href="#sources">[1][2]</a></p>
+  </section>
+
+  <section>
+    <div class="section-head"><div><div class="eyebrow">Three approaches</div><h2>三种打法，分歧只在中段</h2></div><p>真正的共识是先投资效率，再投资属性。玩法不同，决定的是何时插入会战科技。</p></div>
+    <div class="grid-3">
+      <article class="plan"><h3>会战型</h3><ul><li>矿与中心尽快到 25，水晶紧张可先把中心停在 18。</li><li>降费满后，四关开放前补主兵种战斗科技。</li><li>四关会战后补文化交流、野蛮人悬赏、卡鲁报告，再冲特药 II。</li><li>F2P 可跳过 Leadership I / II，把水晶留给兵种属性。</li></ul></article>
+      <article class="plan"><h3>种田 / 赛季币型</h3><ul><li>降费之后，优先把 Cultural Exchange、Barbarian Bounties、Karaku Reports 拉到 15。</li><li>三项相关收益各到 +100%，适合会战结束后的回收期。</li><li>再用单兵种路线冲治疗链和后续功能。</li></ul></article>
+      <article class="plan"><h3>高投入型</h3><ul><li>弹窗礼包全买的玩家，社区建议第一天直接拉满经济树。</li><li>随后完成降费与特药 II，再补多兵种战斗节点。</li><li>重氪可以弱化顺序约束，但“先降费”仍更高效。</li></ul></article>
+    </div>
+    <p class="fine">三种路线与阶段顺序来自 RoK Toolkit 当前策略页；具体开放时间要跟随你所在 KvK 的关卡节奏。<a href="#sources">[1]</a></p>
+  </section>
+
+  <section>
+    <div class="section-head"><div><div class="eyebrow">Budget reality</div><h2>先定现实目标，不追“单季全满”</h2></div><p>全树是跨赛季工程。把目标拆成“核心可用”与“完全毕业”，会更接近真实投入。</p></div>
+    <div class="metric-strip">
+      <div class="metric"><b>129.5M</b><span>RoK Toolkit 给出的全树基础总消耗</span></div>
+      <div class="metric"><b>≈97M</b><span>同一来源给出的满折扣估算</span></div>
+      <div class="metric"><b>138.5M</b><span>按玩家 data.js 逐项加总的另一口径</span></div>
+    </div>
+    <div class="note-bar"><strong>存在分歧</strong><div>总费用两种口径相差约 7%；研究中心 1→25 也有 4.2M、7.65M、1.8M 三种数据。1.1.11 曾下调中心费用，但不同来源尚未完全对齐。不要拿这些总数做精确预算；游戏内当前显示才是最终值。<a href="#sources">[1][3]</a></div></div>
+    <p class="fine">社区案例称：约 20 美元投入、堡垒任务路线正确的活跃玩家，可在进入国王之地时做到约 3 个兵种系接近满级并完成特药 II；这是经验案例，不是保证。全满通常需要多个赛季。<a href="#sources">[1]</a></p>
+  </section>
+
+  <section id="tree">
+    <div class="section-head"><div><div class="eyebrow">Node finder</div><h2>关键节点速查</h2></div><p>收录路线中最常查的 24 个节点。费用均为基础费用，未计动态折扣。</p></div>
+    <div class="tree-tools">
+      <div class="segmented" id="branchTabs">
+        <button class="chip" data-branch="all" aria-pressed="true">全部</button>
+        <button class="chip" data-branch="economy" aria-pressed="false">经济</button>
+        <button class="chip" data-branch="combat" aria-pressed="false">战斗</button>
+        <button class="chip" data-branch="support" aria-pressed="false">辅助</button>
+      </div>
+      <input class="search" id="nodeSearch" type="search" placeholder="搜索中英文节点…" aria-label="搜索科技节点">
+    </div>
+    <div class="tree-grid" id="nodeGrid"></div>
+    <details class="details"><summary>为什么没有把两个可疑节点当成路线依据？</summary><p><b>Emergency Support</b> 在玩家数据源中被标成“弓兵行军速度”，与节点位置不符，疑似录入错误；<b>Rapid Retreat</b> 的效果只显示“200 Gems”，含义无法确认。两者仅作为前置链名称保留，不对效果下结论。</p></details>
+    <p class="fine">节点英文名与 v5 最大等级来自 Codex Helper；每级费用、效果与前置主要来自玩家模拟器 data.js，并与当前策略页交叉核对。中文均为说明性译名。<a href="#sources">[1][2][3]</a></p>
+  </section>
+
+  <section id="income">
+    <div class="section-head"><div><div class="eyebrow">Crystal income</div><h2>水晶从哪里来</h2></div><p>科技路线只有在水晶获取节奏跟上时才成立。</p></div>
+    <div class="grid-3">
+      <article class="plan"><h3>持续产出</h3><ul><li>水晶矿尽快升到 25。</li><li>从 KvK 第一天起刷野蛮人与堡垒，可用连击降低体力消耗。</li><li>高好感、高水晶堡垒任务优先。</li></ul></article>
+      <article class="plan"><h3>事件爆发</h3><ul><li>卡鲁拉克试炼尽快过更高难度。</li><li>社区工具列出的水晶收入：L1 750,000；L2 2,531,000；L3 6,000,000。</li><li>每天留一支卡哈尔之哨完成日常。</li></ul></article>
+      <article class="plan"><h3>旧数据慎用</h3><ul><li>水晶大亨最高 3.8M 宝箱属于旧版数据。</li><li>赛季末 800:1 换赛季币、上限 60k 也来自 2024 旧指南。</li><li>两项都可能调整，务必以当季界面为准。</li></ul></article>
+    </div>
+    <p class="fine">获取方式综合 RoK Toolkit 与 2024 旧树指南；旧数值已显式标注。<a href="#sources">[1][4]</a></p>
+  </section>
+
+  <section id="sources">
+    <div class="section-head"><div><div class="eyebrow">Sources & limits</div><h2>来源与核验边界</h2></div><p>这是 2026-10-13 的资料快照，不会随游戏更新自动刷新。</p></div>
+    <ol class="source-list">
+      <li><b>[1]</b><div><a href="https://rok-tool.com/crystal-tech" target="_blank" rel="noopener">RoK Toolkit · Crystal Tech Strategy Guide</a><p>当前路线、关键目标、收入、基建与总成本口径；2026-10-13 读取。</p></div></li>
+      <li><b>[2]</b><div><a href="https://codexhelper.com/tools/kvk_suite/" target="_blank" rel="noopener">Codex Helper · Crystal Tech Simulator v5</a><p>51 节点英文名、最大等级、v5 适用范围与动态折扣说明；数据由 ROKBattles 提供。</p></div></li>
+      <li><b>[3]</b><div><a href="https://raw.githubusercontent.com/vlad150288/game-simulator-of-technology-upgrade/main/data.js" target="_blank" rel="noopener">玩家模拟器 data.js</a><p>逐级效果、基础费用、前置与赛季币数据；仓库 2026-07 更新，非官方。</p></div></li>
+      <li><b>[4]</b><div><span>Google Doc《Crystal Tech Guide — F2P & LOW SPENDERS》</span><p>Kingdom of Denia，2024-02-03 更新；用于旧树思路与获取方式对照，旧数值不视为当前确认值。</p></div></li>
+      <li><b>[5]</b><div><a href="https://touchscreengaming.com/crystal-technology-guide-and-levelling-order/" target="_blank" rel="noopener">Touchscreen Gaming · Crystal Technology Guide</a><p>约 2025-07 更新；仅作旧树升级逻辑对照。</p></div></li>
+    </ol>
+    <div class="note-bar"><strong>仍未确认</strong><div>新版官方中文节点名、三个分支的官方中文页签名、Emergency Support 与 Rapid Retreat 的准确效果、统一总成本、完整研究时间表，以及 2026 年 9 月后是否还有细微数值热调。页面未补猜测。</div></div>
+  </section>
+</main>
+<script>
+(function(){
+  var calcTroopMeta={
+    inf:{zh:'步兵',attack1:'Quenched Blades I',speed1:'Swift Marching I',attack2:'Quenched Blades II',defense:'Starmetal Shields',speed2:'Swift Marching II',health:'Iron Infantry',speed3:'Swift Marching III'},
+    arch:{zh:'弓兵',attack1:'Improved Bows I',speed1:'Fleet of Foot I',attack2:'Improved Bows II',defense:'Starmetal Bracers',speed2:'Fleet of Foot II',health:"Archer’s Focus",speed3:'Fleet of Foot III'},
+    cav:{zh:'骑兵',attack1:'Mounted Combat Techniques I',speed1:'Swift Steeds I',attack2:'Mounted Combat Techniques II',defense:'Starmetal Barding',speed2:'Swift Steeds II',health:"Rider’s Resilience",speed3:'Swift Steeds III'},
+    siege:{zh:'攻城',attack1:'Improved Projectiles I',speed1:'Reinforced Axles I',attack2:'Improved Projectiles II',defense:'Starmetal Axles',speed2:'Reinforced Axles II',health:'Siege Provisions',speed3:'Reinforced Axles III'}
+  };
+  var calcTargets=[
+    ['cultural','文化交流 · Cultural Exchange'],['cc1','精打细算 I · Cutting Corners I'],['cc2','精打细算 II · Cutting Corners II'],
+    ['cta1','征召 I · Call to Arms I'],['cta2','征召 II · Call to Arms II'],['attack1','主兵种攻击 I'],['speed1','主兵种疾行 I'],
+    ['attack2','主兵种攻击 II'],['defense','主兵种星钢防御'],['speed2','主兵种疾行 II'],['larger','大营地 · Larger Camps'],
+    ['sc1','特制药剂 I · Special Concoctions I'],['emergency','紧急支援 · Emergency Support'],['health','主兵种生命'],['speed3','主兵种疾行 III'],
+    ['sc2','特制药剂 II · Special Concoctions II'],['expanded1','扩展编队 I · 第六队'],['expanded2','扩展编队 II · 第七队']
+  ];
+  function buildCalcData(route){
+    var d={
+      center:{name:'水晶研究中心',max:25,cost:null,req:{}},
+      cta1:{name:'征召 I · Call to Arms I',max:10,cost:[80000,120000,160000,200000,240000,280000,320000,360000,400000,500000],req:{}},
+      cta2:{name:'征召 II · Call to Arms II',max:10,cost:[80000,120000,200000,300000,400000,500000,600000,700000,800000,1000000],req:{}},
+      cc1:{name:'精打细算 I · Cutting Corners I',max:5,cost:[50000,100000,150000,200000,250000],req:{}},
+      cc2:{name:'精打细算 II · Cutting Corners II',max:10,cost:[30000,60000,90000,120000,150000,200000,250000,300000,400000,500000],req:{}},
+      cultural:{name:'文化交流 · Cultural Exchange',max:15,cost:[20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,220000,240000,260000,280000,300000],req:{}},
+      barb:{name:'野蛮人悬赏 · Barbarian Bounties',max:15,cost:[20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,220000,240000,260000,280000,300000],req:{1:[['cultural',1]]}},
+      karaku:{name:'卡鲁报告 · Karaku Reports',max:15,cost:[20000,40000,60000,80000,100000,120000,140000,160000,180000,200000,220000,240000,260000,280000,300000],req:{1:[['cultural',1]]}},
+      larger:{name:'大营地 · Larger Camps',max:5,cost:[50000,100000,150000,250000,500000],req:{}},
+      sc1:{name:'特制药剂 I · Special Concoctions I',max:10,cost:[50000,100000,150000,200000,250000,300000,400000,600000,900000,1500000],req:{}},
+      emergency:{name:'紧急支援 · Emergency Support',max:10,cost:[50000,100000,150000,200000,250000,300000,400000,550000,700000,900000],req:{1:[['sc1',1]]}},
+      sc2:{name:'特制药剂 II · Special Concoctions II',max:10,cost:[50000,75000,100000,200000,300000,400000,500000,600000,700000,800000],req:{}},
+      expanded1:{name:'扩展编队 I · 第六队',max:1,cost:[3000000],req:{1:[['larger',5]]}},
+      expanded2:{name:'扩展编队 II · 第七队',max:1,cost:[6000000],req:{1:[['sc2',10]]}}
+    };
+    Object.keys(calcTroopMeta).forEach(function(k){
+      var m=calcTroopMeta[k];
+      d[k+'Attack1']={name:m.zh+'攻击 I · '+m.attack1,max:5,cost:[30000,60000,90000,120000,150000],req:{}};
+      d[k+'Speed1']={name:m.zh+'疾行 I · '+m.speed1,max:5,cost:[20000,40000,60000,80000,100000],req:{1:[[k+'Attack1',1]],3:[[k+'Attack1',3]],5:[[k+'Attack1',5]]}};
+      d[k+'Attack2']={name:m.zh+'攻击 II · '+m.attack2,max:5,cost:[100000,200000,300000,400000,500000],req:{1:[['cta2',8]],5:[[k+'Speed1',5]]}};
+      d[k+'Defense']={name:m.zh+'星钢防御 · '+m.defense,max:10,cost:[100000,150000,200000,250000,300000,600000,600000,600000,600000,600000],req:{1:[[k+'Attack2',1]],5:[[k+'Attack2',5]]}};
+      d[k+'Speed2']={name:m.zh+'疾行 II · '+m.speed2,max:10,cost:[30000,50000,70000,90000,100000,100000,100000,100000,100000,100000],req:{1:[[k+'Defense',1]],5:[[k+'Defense',5]],8:[[k+'Defense',10]]}};
+      d[k+'Health']={name:m.zh+'生命 · '+m.health,max:10,cost:[150000,225000,300000,375000,450000,900000,900000,900000,900000,900000],req:{1:[['sc1',5]],3:[['sc1',8]],4:[['emergency',8]],6:[['sc1',10]],8:[['emergency',10]]}};
+      d[k+'Speed3']={name:m.zh+'疾行 III · '+m.speed3,max:10,cost:[30000,50000,70000,90000,120000,250000,250000,250000,250000,250000],req:{1:[[k+'Health',5]],5:[[k+'Health',10]]}};
+    });
+    d.cta1.req={1:[[route+'Speed1',3]],5:[[route+'Attack1',5]],8:[[route+'Speed1',5]],9:[['center',17]]};
+    d.cc1.req={1:[['cta1',1]]};
+    d.cultural.req={1:[['cta1',5]],5:[['cta1',8]],8:[['cta2',5]],10:[[route+'Attack2',5]],15:[['center',23]]};
+    d.cta2.req={1:[['cultural',5]],7:[['center',18]],8:[['center',21]],9:[['center',24],['cta1',10]],10:[['center',25]]};
+    d.cc2.req={1:[['cta2',1]],3:[['cc1',5]]};
+    d.larger.req={1:[[route+'Speed2',8]],2:[['cc2',10]],3:[['barb',7],['karaku',7]],4:[['barb',12],['karaku',12]],5:[['barb',15],['karaku',15]]};
+    d.sc1.req={1:[['larger',3]],5:[[route+'Speed2',10]],8:[['larger',4]],10:[['larger',5]]};
+    d.sc2.req={1:[[route+'Speed3',5]],3:[[route+'Speed3',10]],8:[['infSpeed2',10],['archSpeed2',10],['cavSpeed2',10],['siegeSpeed2',10]]};
+    return d;
+  }
+  var calcState={route:'inf',target:'cultural',from:5,to:6,manual:{},discount:{center:0,cc1:0,cc2:0}};
+  function resolveCalcTarget(){
+    var generic=calcState.target;
+    var map={attack1:'Attack1',speed1:'Speed1',attack2:'Attack2',defense:'Defense',speed2:'Speed2',health:'Health',speed3:'Speed3'};
+    return map[generic]?calcState.route+map[generic]:generic;
+  }
+  function fmtCrystal(n){return Math.round(n).toLocaleString('zh-CN')}
+  function collectReqs(data,key,level,set){
+    var token=key+':'+level;if(set[token])return;set[token]=true;
+    var node=data[key];if(!node)return;
+    for(var i=1;i<=level;i++)(node.req[i]||[]).forEach(function(r){collectReqs(data,r[0],r[1],set)});
+  }
+  function inferLevels(data,key,level,out){
+    if((out[key]||0)>=level)return;out[key]=level;
+    var node=data[key];if(!node)return;
+    for(var i=1;i<=level;i++)(node.req[i]||[]).forEach(function(r){inferLevels(data,r[0],r[1],out)});
+  }
+  function centerDiscount(level){if(level<=10)return level*.1;if(level<=20)return 1+(level-10)*.2;return ({21:3.3,22:3.6,23:4,24:4.5,25:5})[level]||0}
+  function makePlan(data,target,current,targetLevel,levels){
+    var desired={};Object.keys(levels).forEach(function(k){desired[k]=levels[k]});desired[target]=current;
+    var costs={},baseCosts={},order=[],unknown={};
+    function discountNow(){return Math.min(20,centerDiscount(desired.center||0)+(desired.cc1||0)+(desired.cc2||0))}
+    function ensure(key,level){
+      if((desired[key]||0)>=level)return;
+      var node=data[key];if(!node)return;
+      for(var i=(desired[key]||0)+1;i<=level;i++){
+        (node.req[i]||[]).forEach(function(r){ensure(r[0],r[1])});
+        if(node.cost){
+          if(costs[key]===undefined){costs[key]=0;baseCosts[key]=0;order.push(key)}
+          var base=node.cost[i-1]||0;baseCosts[key]+=base;costs[key]+=Math.round(base*(1-discountNow()/100));
+        }else{unknown[key]=Math.max(unknown[key]||0,i)}
+        desired[key]=i;
+      }
+    }
+    ensure(target,targetLevel);
+    var total=Object.keys(costs).reduce(function(s,k){return s+costs[k]},0),baseTotal=Object.keys(baseCosts).reduce(function(s,k){return s+baseCosts[k]},0);
+    return {desired:desired,costs:costs,baseCosts:baseCosts,order:order,unknown:unknown,total:total,baseTotal:baseTotal,direct:costs[target]||0};
+  }
+  function syncLevelSelects(){
+    var data=buildCalcData(calcState.route),key=resolveCalcTarget(),max=data[key].max;
+    var from=document.getElementById('calcFrom'),to=document.getElementById('calcTo');
+    if(calcState.from>=max)calcState.from=Math.max(0,max-1);if(calcState.to<=calcState.from||calcState.to>max)calcState.to=Math.min(max,calcState.from+1);
+    from.innerHTML='';to.innerHTML='';
+    for(var i=0;i<max;i++){var a=document.createElement('option');a.value=i;a.textContent=i;if(i===calcState.from)a.selected=true;from.appendChild(a)}
+    for(var j=1;j<=max;j++){if(j<=calcState.from)continue;var b=document.createElement('option');b.value=j;b.textContent=j;if(j===calcState.to)b.selected=true;to.appendChild(b)}
+  }
+  function renderCalculator(resetManual){
+    if(resetManual)calcState.manual={};
+    var data=buildCalcData(calcState.route),target=resolveCalcTarget(),node=data[target];
+    syncLevelSelects();
+    var inferred={};inferLevels(data,target,calcState.from,inferred);inferred[target]=calcState.from;
+    var current={};Object.keys(inferred).forEach(function(k){current[k]=inferred[k]});Object.keys(calcState.manual).forEach(function(k){current[k]=Math.max(inferred[k]||0,Math.min(data[k].max,calcState.manual[k]))});
+    current.center=Math.max(current.center||0,calcState.discount.center);current.cc1=Math.max(current.cc1||0,calcState.discount.cc1);current.cc2=Math.max(current.cc2||0,calcState.discount.cc2);
+    document.getElementById('discountCenter').value=current.center;document.getElementById('discountCc1').value=current.cc1;document.getElementById('discountCc2').value=current.cc2;
+    var plan=makePlan(data,target,calcState.from,calcState.to,current);
+    var prereq=plan.total-plan.direct;
+    document.getElementById('calcTitle').textContent=node.name+' '+calcState.from+' → '+calcState.to;
+    document.getElementById('calcTotal').innerHTML=fmtCrystal(plan.total)+'<small>预计水晶</small>';
+    document.getElementById('calcDirect').textContent=fmtCrystal(plan.direct);
+    document.getElementById('calcPrereq').textContent=fmtCrystal(prereq);
+    document.getElementById('calcSummary').textContent=(prereq===0?'这个区间没有新增科技前置；只计算目标科技本身。':'已把当前进度之后新增的前置链递归计入。')+' 未折扣基础合计 '+fmtCrystal(plan.baseTotal)+'。';
+    var list=document.getElementById('calcBreakdown');list.innerHTML='';
+    plan.order.forEach(function(k){var li=document.createElement('li'),span=document.createElement('span'),b=document.createElement('b');span.textContent=data[k].name+' → '+plan.desired[k];b.textContent=fmtCrystal(plan.costs[k])+(plan.costs[k]!==plan.baseCosts[k]?'（基 '+fmtCrystal(plan.baseCosts[k])+'）':'');li.appendChild(span);li.appendChild(b);list.appendChild(li)});
+    Object.keys(plan.unknown).forEach(function(k){var li=document.createElement('li'),span=document.createElement('span'),b=document.createElement('b');span.textContent=data[k].name+' → '+plan.unknown[k];b.textContent='费用未计';li.appendChild(span);li.appendChild(b);list.appendChild(li)});
+    if(!plan.order.length&&!Object.keys(plan.unknown).length){var empty=document.createElement('li');empty.textContent='无需新增研究。';list.appendChild(empty)}
+    var relevant={};collectReqs(data,target,calcState.to,relevant);
+    var keys={};Object.keys(relevant).forEach(function(t){var k=t.split(':')[0];if(k!==target&&k!=='center')keys[k]=true});
+    var grid=document.getElementById('progressGrid');grid.innerHTML='';
+    Object.keys(keys).sort(function(a,b){return data[a].name.localeCompare(data[b].name,'zh-CN')}).forEach(function(k){
+      var wrap=document.createElement('div');wrap.className='field';var lab=document.createElement('label');lab.textContent=data[k].name;var input=document.createElement('input');input.type='number';input.min=inferred[k]||0;input.max=data[k].max;input.value=current[k]||0;input.dataset.key=k;input.setAttribute('aria-label',data[k].name+'当前等级');wrap.appendChild(lab);wrap.appendChild(input);grid.appendChild(wrap)
+    });
+    var warnings=['预计值按研究中心 + 精打细算 I/II 的已核实分项相加，最多按 −20% 计算；来源所称“约 −25%”与分项不一致，实际扣费以游戏内显示为准。'];
+    if(Object.keys(plan.unknown).length)warnings.unshift('此路径新增研究中心等级门槛；中心升级费用来源冲突，建筑水晶已列出但未计入总额。');
+    document.getElementById('calcWarning').textContent=warnings.join(' ');
+  }
+  var calcTechSelect=document.getElementById('calcTech');
+  calcTargets.forEach(function(o){var opt=document.createElement('option');opt.value=o[0];opt.textContent=o[1];calcTechSelect.appendChild(opt)});
+  calcTechSelect.addEventListener('change',function(){calcState.target=this.value;calcState.from=0;calcState.to=1;renderCalculator(true)});
+  document.getElementById('calcTroop').addEventListener('change',function(){calcState.route=this.value;renderCalculator(true)});
+  document.getElementById('calcFrom').addEventListener('change',function(){calcState.from=Number(this.value);calcState.to=Math.max(calcState.from+1,calcState.to);renderCalculator(true)});
+  document.getElementById('calcTo').addEventListener('change',function(){calcState.to=Number(this.value);renderCalculator(false)});
+  [['discountCenter','center',25],['discountCc1','cc1',5],['discountCc2','cc2',10]].forEach(function(x){document.getElementById(x[0]).addEventListener('change',function(){calcState.discount[x[1]]=Math.max(0,Math.min(x[2],Number(this.value)||0));renderCalculator(false)})});
+  document.getElementById('progressGrid').addEventListener('change',function(e){if(!e.target.dataset.key)return;calcState.manual[e.target.dataset.key]=Number(e.target.value)||0;renderCalculator(false);document.getElementById('progressDetails').open=true});
+  document.querySelector('.calc-presets').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.preset==='culture56'){calcState.target='cultural';calcState.from=5;calcState.to=6}
+    if(b.dataset.preset==='culture08'){calcState.target='cultural';calcState.from=0;calcState.to=8}
+    if(b.dataset.preset==='sc20'){calcState.target='sc2';calcState.from=0;calcState.to=10}
+    calcTechSelect.value=calcState.target;renderCalculator(true)
+  });
+  renderCalculator(true);
+
+  var troops={
+    inf:{name:'步兵',attack1:'Quenched Blades I',march1:'Swift Marching I',attack2:'Quenched Blades II',def:'Starmetal Shields',hp:'Iron Infantry',march2:'Swift Marching II',march3:'Swift Marching III',expert:'Infantry Expert'},
+    arch:{name:'弓兵',attack1:'Improved Bows I',march1:'Fleet of Foot I',attack2:'Improved Bows II',def:'Starmetal Bracers',hp:"Archer’s Focus",march2:'Fleet of Foot II',march3:'Fleet of Foot III',expert:'Archer Expert'},
+    cav:{name:'骑兵',attack1:'Mounted Combat Techniques I',march1:'Swift Steeds I',attack2:'Mounted Combat Techniques II',def:'Starmetal Barding',hp:"Rider’s Resilience",march2:'Swift Steeds II',march3:'Swift Steeds III',expert:'Cavalry Expert'},
+    siege:{name:'攻城',attack1:'Improved Projectiles I',march1:'Reinforced Axles I',attack2:'Improved Projectiles II',def:'Starmetal Axles',hp:'Siege Provisions',march2:'Reinforced Axles II',march3:'Reinforced Axles III',expert:'Siege Expert'}
+  };
+  var state={troop:'inf',mode:'fight'};
+  var modes={
+    fight:{title:'会战优先路线',desc:'四关前保留战斗窗口，打完再补经济，最后冲治疗减免。'},
+    farm:{title:'赛季币优先路线',desc:'先把三项收益科技点满，再沿单兵种链冲特药 II。'},
+    spend:{title:'高投入速成路线',desc:'第一天优先拉经济与降费，随后多兵种并进。'}
+  };
+  function steps(){
+    var t=troops[state.troop];
+    var common=[
+      {h:'水晶矿 → 25；研究中心 → 25',p:'矿保证持续产出；研究中心满级提供已核实的 −5% 研究水晶消耗，并解锁高阶节点。水晶紧张的会战型玩家可先停中心 18。',w:'先建产能'},
+      {h:t.attack1+' 1 → '+t.march1+' 3 → Call to Arms I 1',p:'这是进入第一层降费的最短前置链。不要在这里提前把所有兵种铺开。',w:'单系突破'},
+      {h:'Cutting Corners I → 5',p:'满级 −5%。越早完成，后续昂贵节点越便宜。',w:'第一层降费'},
+      {h:'Call to Arms I 5 → Cultural Exchange 5 → Call to Arms II 1',p:'搭出第二层降费入口；Cutting Corners II 到 3 级还要求 Cutting Corners I 已满。',w:'解锁入口'},
+      {h:'Cutting Corners II → 10',p:'满级 −10%。这之后再大量消费战斗科技。',w:'第二层降费'}
+    ];
+    var fight=[
+      {h:t.name+'会战包：'+t.attack2+' → '+t.def,p:'四关开放前按水晶余量补主兵种攻击与防御，不必强追全满。',w:'四关窗口'},
+      {h:'Cultural Exchange 15 → Barbarian Bounties 15 → Karaku Reports 15',p:'四关会战结束后补经济，三项相关收益满级均为 +100%。',w:'战后回收'},
+      {h:t.march2+' → Larger Camps → Special Concoctions I',p:'沿单兵种辅助链继续推进；Larger Camps 的后段还会要求两项收益科技达到 7 / 12 / 15。',w:'治疗前置'},
+      {h:'Emergency Support → '+t.hp+' → '+t.march3,p:'只把 Emergency Support 当作前置；其实际效果在数据源中存在疑点。',w:'单系到底'},
+      {h:'Special Concoctions II 1 → 7；补四系疾行 II 10 → 特药 II 10',p:'前 7 级可沿主兵种链推进；按逐级前置数据，8 级起要求步、弓、骑、攻城四系疾行 II 均到 10。满级 T5 治疗消耗 −25%。',w:'四系门槛'}
+    ];
+    var farm=[
+      {h:'Cultural Exchange → 15',p:'满级相关堡垒好感与水晶收益 +100%；15 级需要研究中心 23。',w:'堡垒收益'},
+      {h:'Barbarian Bounties 15 + Karaku Reports 15',p:'两项满级各 +100% 相关收益，适合赛季币与水晶回收路线。',w:'经济点满'},
+      {h:t.attack2+' → '+t.def+' → '+t.march2,p:'只走 '+t.name+' 一条兵种线，避免多线摊薄水晶。',w:'单系突破'},
+      {h:'Larger Camps → Special Concoctions I → '+t.hp+' → '+t.march3,p:'依前置逐段完成；疑点节点 Emergency Support 只按游戏内要求点。',w:'治疗前置'},
+      {h:'Special Concoctions II 1 → 7；四系疾行 II 10 → 特药 II 10',p:'前 7 级走主兵种；8 级起先补齐四兵种疾行 II 到 10，再拿满级 T5 治疗 −25%，最后评估第六、七队列。',w:'四系门槛'}
+    ];
+    var spend=[
+      {h:'第一天拉满经济树',p:'弹窗礼包全买的玩家，社区建议直接完成 Cultural Exchange、Barbarian Bounties 与 Karaku Reports。',w:'高投入'},
+      {h:'完成 Cutting Corners I / II',p:'即使资源充足，先完成降费仍然能降低后续全树成本。',w:'保留效率'},
+      {h:'四兵种攻击 II 与星钢防御并进',p:'不再局限单兵种，可按当前统帅与会战职责配置属性。',w:'多系扩张'},
+      {h:'Special Concoctions I → II 10',p:'优先建立 T5 治疗续航，再开更多队列。',w:'治疗核心'},
+      {h:'Expanded Formations I / II → Experts → Surprise Strike',p:'第六队耗 3M，第七队耗 6M；随后完成专家与最终伤害节点。',w:'全树收尾'}
+    ];
+    return common.concat(state.mode==='fight'?fight:state.mode==='farm'?farm:spend);
+  }
+  function renderRoute(){
+    var t=troops[state.troop],m=modes[state.mode];
+    document.getElementById('routeTitle').textContent=t.name+' · '+m.title;
+    document.getElementById('routeDesc').textContent=m.desc;
+    document.getElementById('routeSteps').innerHTML=steps().map(function(s){return '<article class="step"><div><h3>'+s.h+'</h3><p>'+s.p+'</p></div><span class="why">'+s.w+'</span></article>'}).join('');
+  }
+  function bindTabs(id,key){
+    document.getElementById(id).addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b)return;
+      Array.prototype.forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      state[key]=b.dataset[key];renderRoute();
+    });
+  }
+  bindTabs('troopTabs','troop');bindTabs('modeTabs','mode');renderRoute();
+
+  var nodes=[
+    ['economy','精打细算 I','Cutting Corners I','5','−1%/级（满 −5%）','50/100/150/200/250k','Call to Arms I-1'],
+    ['economy','精打细算 II','Cutting Corners II','10','−1%/级（满 −10%）','30/60/90/120/150/200/250/300/400/500k','CtA II-1；L3 需 CC I-5'],
+    ['economy','文化交流','Cultural Exchange','15','+5%/级；11级起 +10%（满 +100%）','20k 起每级 +20k，至 300k','CtA I-5；L15 需中心23'],
+    ['economy','野蛮人悬赏','Barbarian Bounties','15','相关伤害/水晶收益，满 +100%','20k 起每级 +20k，至 300k','Cultural Exchange-1'],
+    ['economy','卡鲁报告','Karaku Reports','15','相关水晶收益，满 +100%','20k 起每级 +20k，至 300k','Cultural Exchange-1'],
+    ['combat','征召 I','Call to Arms I','10','部队容量，满 +15%','80/120/160/200/240/280/320/360/400/500k','任一疾行 I-3 起'],
+    ['combat','征召 II','Call to Arms II','10','部队容量，满 +35%','80/120/200/300/400/500/600/700/800/1000k','Cultural Exchange-5 起'],
+    ['combat','步兵攻击 II','Quenched Blades II','5','累计 +1/3/4.5/6/7.5%','100/200/300/400/500k','CtA II-8；L5 需 Swift Marching I-5'],
+    ['combat','弓兵攻击 II','Improved Bows II','5','累计 +1/3/4.5/6/7.5%','100/200/300/400/500k','CtA II-8；L5 需 Fleet of Foot I-5'],
+    ['combat','骑兵攻击 II','Mounted Combat Techniques II','5','累计 +1/3/4.5/6/7.5%','100/200/300/400/500k','CtA II-8；L5 需 Swift Steeds I-5'],
+    ['combat','步兵防御','Starmetal Shields','10','累计至 +15%','100/150/200/250/300k；600k×5','Quenched Blades II-1 起'],
+    ['combat','弓兵防御','Starmetal Bracers','10','累计至 +15%','100/150/200/250/300k；600k×5','Improved Bows II-1 起'],
+    ['combat','骑兵防御','Starmetal Barding','10','累计至 +15%','100/150/200/250/300k；600k×5','Mounted Combat II-1 起'],
+    ['combat','突袭','Surprise Strike','10','+1%/级（满 +10%）','50/75/100/200/300/400/500/600/700/800k','任一 Expert-3 起'],
+    ['support','大营地','Larger Camps','5','增援容量 +10/25/40/65/100%','50/100/150/250/500k','任一疾行 II-8；后段需收益科技'],
+    ['support','特制药剂 I','Special Concoctions I','10','治疗消耗满 −15%','50/100/150/200/250/300/400/600/900/1500k','Larger Camps-3 起'],
+    ['support','特制药剂 II','Special Concoctions II','10','T5 治疗消耗满 −25%','50/75/100/200/300/400/500/600/700/800k','L1 任一疾行 III-5；L8 四系疾行 II-10'],
+    ['support','符文工艺','Runecraft','1','每天可召唤 2 次符文','3,000k','Larger Camps-5'],
+    ['support','扩展编队 I','Expanded Formations I','1','出征队列 +1（第六队）','3,000k','Larger Camps-5'],
+    ['support','扩展编队 II','Expanded Formations II','1','出征队列 +1（第七队）','6,000k','Special Concoctions II-10'],
+    ['support','天界指引','Celestial Guidance','3','自动帮助 +10/20/30','300/500/800k','Special Concoctions II-3'],
+    ['support','紧急支援','Emergency Support','10','效果待验证','50/100/150/200/250/300/400/550/700/900k','Special Concoctions I-1'],
+    ['support','快速撤退','Rapid Retreat','1','效果待验证','3,000k','Special Concoctions I-1'],
+    ['combat','领导力 II','Leadership II','10','集结容量满 +35%','50/100/150/200/250/300/400/600/900/1500k','CtA II-1；L2 需 Leadership I-5']
+  ];
+  var branch='all',q='';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function renderNodes(){
+    var labels={economy:'经济',combat:'战斗',support:'辅助'};
+    var filtered=nodes.filter(function(n){return (branch==='all'||n[0]===branch)&&(!q||(n[1]+' '+n[2]).toLowerCase().indexOf(q)>-1)});
+    document.getElementById('nodeGrid').innerHTML=filtered.map(function(n){return '<article class="node"><div class="branch">'+labels[n[0]]+'</div><div class="node-top"><h3>'+esc(n[1])+'<span class="en">'+esc(n[2])+'</span></h3><span class="lvl">MAX '+n[3]+'</span></div><dl><dt>效果</dt><dd class="'+(n[4]==='效果待验证'?'uncertain':'')+'">'+esc(n[4])+'</dd><dt>费用</dt><dd>'+esc(n[5])+'</dd><dt>前置</dt><dd>'+esc(n[6])+'</dd></dl></article>'}).join('') || '<p>没有匹配的节点。</p>';
+  }
+  document.getElementById('branchTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;branch=b.dataset.branch;Array.prototype.forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});renderNodes()});
+  document.getElementById('nodeSearch').addEventListener('input',function(){q=this.value.trim().toLowerCase();renderNodes()});
+  renderNodes();
+})();
+</script>
+</body>
+</html>
