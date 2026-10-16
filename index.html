@@ -323,6 +323,34 @@
     return d;
   }
   var calcState={route:'inf',target:'cultural',from:5,to:6,manual:{},discount:{center:0,cc1:0,cc2:0}};
+  // 输入记忆：同一浏览器内记住用户输入，重开页面自动恢复（localStorage）
+  var LS_KEY='wgjx-input-memory-v1';
+  function saveInputs(){
+    try{
+      localStorage.setItem(LS_KEY,JSON.stringify({target:calcState.target,route:calcState.route,from:calcState.from,to:calcState.to,discount:calcState.discount,manual:calcState.manual}));
+    }catch(e){}
+  }
+  function loadInputs(){
+    var ok=false;
+    try{
+      var s=JSON.parse(localStorage.getItem(LS_KEY)||'null');
+      if(!s||typeof s!=='object')return false;
+      var validTargets={};calcTargets.forEach(function(o){validTargets[o[0]]=1});
+      if(validTargets[s.target]){calcState.target=s.target;ok=true}
+      if({inf:1,arch:1,cav:1,siege:1}[s.route]){calcState.route=s.route;ok=true}
+      if(typeof s.from==='number'&&s.from>=0){calcState.from=Math.floor(s.from);ok=true}
+      if(typeof s.to==='number'&&s.to>=1){calcState.to=Math.floor(s.to);ok=true}
+      if(s.discount&&typeof s.discount==='object'){
+        var lim={center:25,cc1:5,cc2:10};
+        Object.keys(lim).forEach(function(k){var v=s.discount[k];if(typeof v==='number'&&v>=0){calcState.discount[k]=Math.min(lim[k],Math.floor(v));ok=true}});
+      }
+      if(s.manual&&typeof s.manual==='object'){
+        var m={};Object.keys(s.manual).forEach(function(k){var v=s.manual[k];if(typeof v==='number'&&v>=0)m[k]=v});
+        if(Object.keys(m).length){calcState.manual=m;ok=true}
+      }
+    }catch(e){}
+    return ok;
+  }
   function resolveCalcTarget(){
     var generic=calcState.target;
     var map={attack1:'Attack1',speed1:'Speed1',attack2:'Attack2',defense:'Defense',speed2:'Speed2',health:'Health',speed3:'Speed3'};
@@ -396,6 +424,7 @@
     var warnings=['预计值按研究中心 + 精打细算 I/II 的已核实分项相加，最多按 −20% 计算；来源所称“约 −25%”与分项不一致，实际扣费以游戏内显示为准。'];
     if(Object.keys(plan.unknown).length)warnings.unshift('此路径新增研究中心等级门槛；中心升级费用来源冲突，建筑水晶已列出但未计入总额。');
     document.getElementById('calcWarning').textContent=warnings.join(' ');
+    saveInputs();
   }
   var calcTechSelect=document.getElementById('calcTech');
   calcTargets.forEach(function(o){var opt=document.createElement('option');opt.value=o[0];opt.textContent=o[1];calcTechSelect.appendChild(opt)});
@@ -411,7 +440,10 @@
     if(b.dataset.preset==='sc20'){calcState.target='sc2';calcState.from=0;calcState.to=10}
     calcTechSelect.value=calcState.target;renderCalculator(true)
   });
-  renderCalculator(true);
+  var hadSavedInputs=loadInputs();
+  document.getElementById('calcTech').value=calcState.target;
+  document.getElementById('calcTroop').value=calcState.route;
+  renderCalculator(!hadSavedInputs);
 
   var troops={
     inf:{name:'步兵',attack1:'Quenched Blades I',march1:'Swift Marching I',attack2:'Quenched Blades II',def:'Starmetal Shields',hp:'Iron Infantry',march2:'Swift Marching II',march3:'Swift Marching III',expert:'Infantry Expert'},
